@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Project</title>
+    <style>
+        #container {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        #Calculator {
+            /* border: 10px solid rgb(4, 138, 6); */
+            border: 10px solid; 
+            border-image: linear-gradient( rgb(1, 7, 114), black, red, pink, yellow , rgb(6, 173, 198), green, rgb(174, 2, 145))1;
+
+            width: 250px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            background-color: black;
+            /* background-image: linear-gradient(#00ff00, #ff0000, #0000ff, #0091d0, #e1fe0600, pink, rgb(205, 15, 218)); */
+
+        }
+
+        #display {
+            margin: 10px;
+            height: 32px;
+            width: 250px;
+            border: 2px solid;
+            border-radius: 3px;
+        }
+
+        #display:focus {
+            border-color: lightgreen;
+            outline: none;
+        }
+
+        .cal_button {
+            width: 50px;
+            height: 50px;
+            margin: 3px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+
+        }
+
+        .cal_button:active {
+            background-color: lightgreen;
+        }
+
+        #dot {
+            font-size: x-large;
+            display: flex;
+            justify-content: center;
+            background-color: rgb(194, 238, 255);
+
+        }
+
+        #dot:active {
+            background-color: rgb(68, 149, 112);
+        }
+
+        #clr {
+            background-color: rgb(194, 238, 255);
+        }
+
+        #clr:active {
+            background-color: red;
+        }
+
+        #div {
+            background-color: rgb(194, 238, 255);
+        }
+
+        #div:active {
+            background-color: rgb(68, 149, 112);
+        }
+
+        #mul:active {
+            background-color: rgb(68, 149, 112);
+        }
+
+        #mul {
+            background-color: rgb(194, 238, 255);
+        }
+
+        #del {
+            background-color: rgb(194, 238, 255);
+        }
+
+        #del:active {
+            background-color: rgb(68, 149, 112);
+        }
+
+        #sub {
+            background-color: rgb(194, 238, 255);
+        }
+
+        #sub:active {
+            background-color: rgb(68, 149, 112);
+        }
+
+        #add {
+            background-color: rgb(194, 238, 255);
+        }
+
+        #add:active {
+            background-color: rgb(68, 149, 112);
+        }
+
+        #equal {
+            background-color: rgb(194, 238, 255);
+        }
+
+        #equal:active {
+            background-color: green;
+        }
+
+        #ex {
+            background-color: rgb(194, 238, 255);
+        }
+
+        #ex:active {
+            background-color: rgb(68, 149, 112);
+        }
+
+        #rem {
+            background-color: rgb(194, 238, 255);
+        }
+
+        #rem:active {
+            background-color: rgb(68, 149, 112);
+        }
+
+        .but_container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="Calculator">
+            <input type="text" id="display" readonly>
+            <div class="but_container">
+                <button class="cal_button" id="clr" onclick="currentDisplay=''; document.querySelector('#display').value = currentDisplay;">C</button>
+
+                <button class="cal_button" id="div" onclick="currentDisplay+='/'; document.querySelector('#display').value = currentDisplay;">/</button>
+
+                <button class="cal_button" id="mul" onclick="currentDisplay+='*'; document.querySelector('#display').value = currentDisplay;">*</button>
+
+
+                <button class="cal_button" id="del" onclick="currentDisplay=''; document.querySelector('#display').value = currentDisplay.value.slice(0, -1);">del</button>
+
+
+                <button class="cal_button" onclick="currentDisplay+='7'; document.querySelector('#display').value = currentDisplay;">7</button>
+
+                <button class="cal_button" onclick="currentDisplay+='8'; document.querySelector('#display').value = currentDisplay;">8</button>
+
+                <button class="cal_button" onclick="currentDisplay+='9'; document.querySelector('#display').value = currentDisplay;">9</button>
+
+                <button class="cal_button" id="sub" onclick="currentDisplay+='-'; document.querySelector('#display').value = currentDisplay;">-</button>
+
+                <button class="cal_button" onclick="currentDisplay+='6'; document.querySelector('#display').value = currentDisplay;">6</button>
+                <button class="cal_button" onclick="currentDisplay+='5'; document.querySelector('#display').value = currentDisplay;">5</button>
+                <button class="cal_button" onclick="currentDisplay+='4'; document.querySelector('#display').value = currentDisplay;">4</button>
+                <button class="cal_button" id="add"  onclick="currentDisplay+='+'; document.querySelector('#display').value = currentDisplay;">+</button>
+                <button class="cal_button" onclick="currentDisplay+='1'; document.querySelector('#display').value = currentDisplay;">1</button>
+
+                <button class="cal_button" onclick="currentDisplay+='2'; document.querySelector('#display').value = currentDisplay;">2</button>
+
+                <button class="cal_button" onclick="currentDisplay+='3'; document.querySelector('#display').value = currentDisplay;">3</button>
+
+
+                <button class="cal_button" id="equal" onclick= " let result = eval(currentDisplay); currentDisplay = result; document.querySelector('#display').value = currentDisplay;">=</button>
+
+
+                <button class="cal_button" id="rem" onclick="currentDisplay+='%'; document.querySelector('#display').value = currentDisplay;">%</button>
+
+                <button class="cal_button" onclick="currentDisplay+='0'; document.querySelector('#display').value = currentDisplay;">0</button>
+
+                <button class="cal_button" id="dot" onclick="currentDisplay+='.'; document.querySelector('#display').value = currentDisplay;">.</button>
+
+                <button class="cal_button" id="ex">!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentDisplay = '';
+        const deleteBtn = document.getElementById('#del');
+        deleteBtn.addEventListener('click',() =>{
+            currentDisplay.value = currentDisplay.slice(0, -1);
+        });
+        document.querySelector('#display').value = currentDisplay;
+    </script>
+</body>
+
+</html>
